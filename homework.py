@@ -35,6 +35,7 @@ HOMEWORK_STATUSES = {
 
 class BotError(Exception):
     """Ошибки в работе бота."""
+
     pass
 
 
