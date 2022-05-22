@@ -34,11 +34,12 @@ HOMEWORK_STATUSES = {
 
 
 class BotError(Exception):
+    """Ошибки в работе бота."""
     pass
 
 
 def send_message(bot, message):
-    """Отправляет сообщение в Telegram чат"""
+    """Отправляет сообщение в Telegram чат."""
     try:
         bot.send_message(TELEGRAM_CHAT_ID, message)
         logger.info('Удачная отправка сообщения в Telegram')
@@ -47,7 +48,7 @@ def send_message(bot, message):
 
 
 def get_api_answer(current_timestamp):
-    """Делает запрос к эндпоинту API-сервиса"""
+    """Делает запрос к эндпоинту API-сервиса."""
     timestamp = current_timestamp
     params = {'from_date': timestamp}
     homework_statuses = requests.get(ENDPOINT, headers=HEADERS, params=params)
@@ -62,7 +63,7 @@ def get_api_answer(current_timestamp):
 
 
 def check_response(response):
-    """Проверяет ответ API на корректность"""
+    """Проверяет ответ API на корректность."""
     homeworks = response['homeworks']
     if type(homeworks) == list:
         return homeworks
@@ -74,8 +75,7 @@ def check_response(response):
 
 
 def parse_status(homework):
-    """Извлекает из информации о конкретной домашней работе
-     статус этой работы."""
+    """Извлекает из информации о домашней работе статус этой работы."""
     if 'homework_name' not in homework:
         raise KeyError('homework_name отсутствует в homework')
     try:
@@ -91,7 +91,7 @@ def parse_status(homework):
 
 
 def check_tokens():
-    """Проверяет доступность переменных окружения"""
+    """Проверяет доступность переменных окружения."""
     if TELEGRAM_CHAT_ID and PRACTICUM_TOKEN and TELEGRAM_TOKEN is not None:
         return True
     else:
