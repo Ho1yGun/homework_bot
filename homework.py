@@ -38,7 +38,13 @@ def get_api_answer(current_timestamp):
 
 def check_response(response):
     """Проверяет ответ API на корректность."""
-    homeworks = response.get('homeworks')
+    # homeworks = response.get('homeworks')
+    # Всё работает, но такое решение не нравится тестам яндекса
+    try:
+        homeworks = response['homeworks']
+    except:
+        logger.error('Отсутствует ключ homeworks')
+        homeworks = []
     if isinstance(homeworks, list):
         return homeworks
 
@@ -65,7 +71,7 @@ def parse_status(homework):
 
 def check_tokens():
     """Проверяет доступность переменных окружения."""
-    all([TELEGRAM_CHAT_ID, PRACTICUM_TOKEN, TELEGRAM_TOKEN])
+    return all([TELEGRAM_CHAT_ID, PRACTICUM_TOKEN, TELEGRAM_TOKEN])
 
 
 def main():
