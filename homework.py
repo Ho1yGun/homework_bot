@@ -6,8 +6,9 @@ from http import HTTPStatus
 import requests
 import telegram
 
-from config import *
-from exceptions import *
+from config import (ENDPOINT, HEADERS, HOMEWORK_STATUSES, PRACTICUM_TOKEN,
+                    RETRY_TIME, TELEGRAM_CHAT_ID, TELEGRAM_TOKEN)
+from exceptions import BotMessageError, YandexAPIError
 
 
 def send_message(bot, message):
