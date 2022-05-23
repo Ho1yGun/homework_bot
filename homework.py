@@ -42,7 +42,7 @@ def check_response(response):
     # Всё работает, но такое решение не нравится тестам яндекса
     try:
         homeworks = response['homeworks']
-    except:
+    except KeyError:
         logger.error('Отсутствует ключ homeworks')
         homeworks = []
     if isinstance(homeworks, list):
