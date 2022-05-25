@@ -6,8 +6,11 @@ from http import HTTPStatus
 import requests
 import telegram
 
-from config import (ENDPOINT, HEADERS, HOMEWORK_STATUSES, PRACTICUM_TOKEN,
-                    RETRY_TIME, TELEGRAM_CHAT_ID, TELEGRAM_TOKEN)
+from config import (
+    ENDPOINT, HEADERS, HOMEWORK_STATUSES, PRACTICUM_TOKEN,
+    RETRY_TIME, TELEGRAM_CHAT_ID, TELEGRAM_TOKEN
+)
+# странно, но isort возвращал всё как было и такой вариант не воспринимал
 from exceptions import BotMessageError, YandexAPIError
 
 
@@ -93,7 +96,7 @@ def main():
                     old_verdict = verdict
                 else:
                     logger.debug('Нет новых статусов')
-            current_timestamp = response.get('current_date')
+            current_timestamp = response.get('current_date', current_timestamp)
 
         except Exception as error:
             logger.error(error, exc_info=True)
