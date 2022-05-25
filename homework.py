@@ -16,7 +16,7 @@ def send_message(bot, message):
     try:
         bot.send_message(TELEGRAM_CHAT_ID, message)
         logger.info('Удачная отправка сообщения в Telegram')
-    except Exception as error:
+    except telegram.error.TelegramError as error:
         logger.error(error, exc_info=True)
         raise BotMessageError('Бот не смог отправить сообщение')
 
@@ -38,8 +38,6 @@ def get_api_answer(current_timestamp):
 
 def check_response(response):
     """Проверяет ответ API на корректность."""
-    # homeworks = response.get('homeworks')
-    # Всё работает, но такое решение не нравится тестам яндекса
     try:
         homeworks = response['homeworks']
     except KeyError:
@@ -95,6 +93,7 @@ def main():
                     old_verdict = verdict
                 else:
                     logger.debug('Нет новых статусов')
+            current_timestamp = response.get('current_date')
 
         except Exception as error:
             logger.error(error, exc_info=True)
@@ -105,7 +104,6 @@ def main():
 
         finally:
             time.sleep(RETRY_TIME)
-            current_timestamp = response.get('current_date')
 
 
 if __name__ == '__main__':
