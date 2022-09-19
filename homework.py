@@ -10,7 +10,6 @@ from config import (
     ENDPOINT, HEADERS, HOMEWORK_STATUSES, PRACTICUM_TOKEN,
     RETRY_TIME, TELEGRAM_CHAT_ID, TELEGRAM_TOKEN
 )
-# странно, но isort возвращал всё как было и такой вариант не воспринимал
 from exceptions import BotMessageError, YandexAPIError
 
 
