@@ -36,6 +36,7 @@ source env/bin/activate
 pip install -r requirements.txt
 ```
 #### Создать файл .env в корне проекта и прописать в нём:
+```
 PRACTICUM_TOKEN=практикум токен без пробелов
 TELEGRAM_TOKEN=ваш токен телеграма без пробелов
 TELEGRAM_CHAT_ID=ваш ID телеграмм чата без пробелов
