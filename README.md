@@ -39,3 +39,4 @@ pip install -r requirements.txt
 PRACTICUM_TOKEN=практикум токен без пробелов
 TELEGRAM_TOKEN=ваш токен телеграма без пробелов
 TELEGRAM_CHAT_ID=ваш ID телеграмм чата без пробелов
+```
